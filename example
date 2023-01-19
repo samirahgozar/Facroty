@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic; 
+					
+public class Program
+{
+	 public abstract class Broncode  
+    {  
+        public abstract string Value { get; }  
+    }  
+  
+    public  class Zero : Broncode  
+    {  
+        public override string Value  
+        {  
+            get  
+            {  
+                return "⚪⚪⚪⚪⚪⚪⚪⚪⚪⚪";  
+            }  
+        }  
+    }  
+  
+    public  class One : Broncode  
+    {  
+        public override string Value  
+        {  
+            get  
+            {  
+                return "🔵⚪⚪⚪⚪⚪⚪⚪⚪⚪";  
+            }  
+        }  
+    }  
+  
+    public  class Two : Broncode  
+    {  
+        public override string Value  
+        {  
+            get  
+            {  
+                return "🔵🔵⚪⚪⚪⚪⚪⚪⚪⚪";  
+            }  
+        }  
+    }  
+  
+    public static class Factory  
+    {  
+  
+        public static  Broncode Get(int id)  
+        {  
+            var factory = cardFactories[id];  
+            return factory();  
+        }  
+     
+  
+      public static  Dictionary<int, Func<Broncode>> cardFactories =  
+                    new Dictionary<int, Func<Broncode>>  
+                {  
+                    { 0, ()=>new Zero() },  
+                    { 1, ()=>new One() },  
+                    { 2, ()=>new Two() },  
+  
+                };  
+          
+    }  
+	
+	
+	
+	
+	public static void Main()
+	{
+		
+  var position = Factory.Get(2);  
+   Console.WriteLine("Where value = {0}, position = {1} ", 2, position.Value); 	}
+}
